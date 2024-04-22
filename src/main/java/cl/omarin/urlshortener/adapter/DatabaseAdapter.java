@@ -22,8 +22,10 @@ public class DatabaseAdapter {
         return database.get(code);
     }
 
-    public void createUrlShortener(UrlShortenerModel entity) {
+    public boolean createUrlShortener(UrlShortenerModel entity) {
+        if (database.get(entity.getCode()) == null) return false;
         database.put(entity.getCode(), entity);
+        return true;
     }
 
     public UrlShortenerModel updateUrlShortener(UrlShortenerModel entity) {

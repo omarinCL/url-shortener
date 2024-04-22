@@ -30,7 +30,11 @@ public class UrlService {
 
     public String createUrlShortener(String url) {
         var code = utils.generateCode();
-        databaseAdapter.createUrlShortener(new UrlShortenerModel(url, code, true));
+        var result = false;
+        while (!result) {
+            result = databaseAdapter.createUrlShortener(new UrlShortenerModel(url, code, true));
+            code = utils.generateCode();
+        }
         return code;
     }
 
