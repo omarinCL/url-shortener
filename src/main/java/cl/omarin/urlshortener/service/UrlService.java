@@ -33,7 +33,7 @@ public class UrlService {
         var result = false;
         while (!result) {
             result = databaseAdapter.createUrlShortener(new UrlShortenerModel(url, code, true));
-            code = utils.generateCode();
+            if (!result) code = utils.generateCode();
         }
         return code;
     }
